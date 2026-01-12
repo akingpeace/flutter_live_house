@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_live_house/core/themes/app_theme.dart';
 import '../core/services/http_service.dart'; // 导入 HttpService
+import '../widgets/base_page.dart';
 import './registy.dart';
 
 class LoginPage extends StatefulWidget {
@@ -109,56 +110,58 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: AppTheme.primaryColor,
         title: Text('欢迎回来', style: AppTheme.customAppBarTitle),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 40),
-              TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  hintText: '请输入用户名',
-                  labelText: '用户名',
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                ),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                obscureText: true,
-                controller: passwordController,
-                decoration: InputDecoration(
-                  hintText: '请输入密码',
-                  labelText: '密码',
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                ),
-              ),
-              SizedBox(height: 64),
-              SizedBox(
-                height: 45,
-                width: double.infinity,
-                child: ElevatedButton(onPressed: onLogin, child: Text('登录')),
-              ),
-              SizedBox(height: 16),
-              SizedBox(
-                height: 45,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: goRegisty,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.secondaryColor,
+      body: BasePage(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 40),
+                TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    hintText: '请输入用户名',
+                    labelText: '用户名',
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
                   ),
-                  child: Text('注册'),
                 ),
-              ),
-              SizedBox(height: 64),
-              TextButton(
-                onPressed: () {
-                  // Navigator.pushNamed(context, '/forget');
-                },
-                child: Text('忘记密码'),
-              ),
-            ],
+                SizedBox(height: 20),
+                TextField(
+                  obscureText: true,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    hintText: '请输入密码',
+                    labelText: '密码',
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                  ),
+                ),
+                SizedBox(height: 64),
+                SizedBox(
+                  height: 45,
+                  width: double.infinity,
+                  child: ElevatedButton(onPressed: onLogin, child: Text('登录')),
+                ),
+                SizedBox(height: 16),
+                SizedBox(
+                  height: 45,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: goRegisty,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.secondaryColor,
+                    ),
+                    child: Text('注册'),
+                  ),
+                ),
+                SizedBox(height: 64),
+                TextButton(
+                  onPressed: () {
+                    // Navigator.pushNamed(context, '/forget');
+                  },
+                  child: Text('忘记密码'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

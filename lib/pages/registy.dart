@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/services/http_service.dart'; // 导入 HttpService
+import '../widgets/base_page.dart';
 
 class Registy extends StatefulWidget {
   const Registy({super.key});
@@ -235,81 +236,83 @@ class _RegistyState extends State<Registy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('注册')),
-      body: SafeArea(
-        // 确保内容在安全区域内
-        child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              spacing: 4,
-              children: [
-                // 姓名输入框
-                _buildCustomTextField(
-                  controller: _controllers['name']!,
-                  focusNode: _focusNodes['name']!,
-                  labelText: '姓名',
-                  keyboardType: TextInputType.name,
-                  validator: _validateName,
-                  errorText: _errors['name'],
-                ),
-                // 用户名输入框
-                _buildCustomTextField(
-                  controller: _controllers['username']!,
-                  focusNode: _focusNodes['username']!,
-                  labelText: '用户名',
-                  keyboardType: TextInputType.text,
-                  validator: _validateUsername,
-                  errorText: _errors['username'],
-                ),
-                // 密码输入框
-                _buildCustomTextField(
-                  controller: _controllers['password']!,
-                  focusNode: _focusNodes['password']!,
-                  labelText: '密码',
-                  obscureText: true,
-                  validator: _validatePassword,
-                  errorText: _errors['password'],
-                ),
-                // 确认密码输入框
-                _buildCustomTextField(
-                  controller: _controllers['confirmPassword']!,
-                  focusNode: _focusNodes['confirmPassword']!,
-                  labelText: '确认密码',
-                  obscureText: true,
-                  validator: _validateConfirmPassword,
-                  errorText: _errors['confirmPassword'],
-                ),
-                // 邮箱输入框
-                _buildCustomTextField(
-                  controller: _controllers['email']!,
-                  focusNode: _focusNodes['email']!,
-                  labelText: '邮箱',
-                  keyboardType: TextInputType.emailAddress,
-                  validator: _validateEmail,
-                  errorText: _errors['email'],
-                ),
-                // 手机号输入框
-                _buildCustomTextField(
-                  controller: _controllers['phone']!,
-                  focusNode: _focusNodes['phone']!,
-                  labelText: '手机号码',
-                  keyboardType: TextInputType.phone,
-                  validator: _validatePhone,
-                  errorText: _errors['phone'],
-                ),
-                // 性别选择
-                _buildGenderSelection(),
-                SizedBox(height: 32),
-                SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _onRegister,
-                    child: Text('注册'),
+      body: BasePage(
+        child: SafeArea(
+          // 确保内容在安全区域内
+          child: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                spacing: 4,
+                children: [
+                  // 姓名输入框
+                  _buildCustomTextField(
+                    controller: _controllers['name']!,
+                    focusNode: _focusNodes['name']!,
+                    labelText: '姓名',
+                    keyboardType: TextInputType.name,
+                    validator: _validateName,
+                    errorText: _errors['name'],
                   ),
-                ),
-              ],
+                  // 用户名输入框
+                  _buildCustomTextField(
+                    controller: _controllers['username']!,
+                    focusNode: _focusNodes['username']!,
+                    labelText: '用户名',
+                    keyboardType: TextInputType.text,
+                    validator: _validateUsername,
+                    errorText: _errors['username'],
+                  ),
+                  // 密码输入框
+                  _buildCustomTextField(
+                    controller: _controllers['password']!,
+                    focusNode: _focusNodes['password']!,
+                    labelText: '密码',
+                    obscureText: true,
+                    validator: _validatePassword,
+                    errorText: _errors['password'],
+                  ),
+                  // 确认密码输入框
+                  _buildCustomTextField(
+                    controller: _controllers['confirmPassword']!,
+                    focusNode: _focusNodes['confirmPassword']!,
+                    labelText: '确认密码',
+                    obscureText: true,
+                    validator: _validateConfirmPassword,
+                    errorText: _errors['confirmPassword'],
+                  ),
+                  // 邮箱输入框
+                  _buildCustomTextField(
+                    controller: _controllers['email']!,
+                    focusNode: _focusNodes['email']!,
+                    labelText: '邮箱',
+                    keyboardType: TextInputType.emailAddress,
+                    validator: _validateEmail,
+                    errorText: _errors['email'],
+                  ),
+                  // 手机号输入框
+                  _buildCustomTextField(
+                    controller: _controllers['phone']!,
+                    focusNode: _focusNodes['phone']!,
+                    labelText: '手机号码',
+                    keyboardType: TextInputType.phone,
+                    validator: _validatePhone,
+                    errorText: _errors['phone'],
+                  ),
+                  // 性别选择
+                  _buildGenderSelection(),
+                  SizedBox(height: 32),
+                  SizedBox(
+                    height: 45,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _onRegister,
+                      child: Text('注册'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
