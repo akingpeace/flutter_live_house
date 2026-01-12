@@ -160,7 +160,7 @@ class AppTheme {
       brightness: Brightness.dark,
       primarySwatch: Colors.blue,
       primaryColor: secondaryColor,
-      scaffoldBackgroundColor: const Color(0xFF121212),
+      scaffoldBackgroundColor: Colors.black12,
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1F1F1F),
         foregroundColor: Colors.white,

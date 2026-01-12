@@ -106,10 +106,7 @@ class _LoginPageState extends State<LoginPage> {
     Color backgroundColor = Theme.of(context).scaffoldBackgroundColor;
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppTheme.primaryColor,
-        title: Text('欢迎回来', style: AppTheme.customAppBarTitle),
-      ),
+      appBar: AppBar(title: Text('欢迎回来')),
       body: BasePage(
         child: SingleChildScrollView(
           child: Padding(
