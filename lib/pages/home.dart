@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_live_house/homePages/home.dart';
+import 'package:flutter_live_house/homePages/my.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     Home(),
     Center(child: Text('发现')),
     Center(child: Text('购物车')),
-    Center(child: Text('我的')),
+    MyPage(),
   ];
 
   @override
