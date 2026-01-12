@@ -8,13 +8,20 @@ class AppTheme {
   static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color surfaceColor = Color(0xFFFFFFFF);
   static const Color errorColor = Color(0xFFB00020);
-  static const Color onPrimaryColor = Color(0xFFFFFFFF);
+  static const Color onPrimaryColor = Color(0xFF333333);
   static const Color onSecondaryColor = Color(0xFF000000);
-  
+
   // 字体颜色
   static const Color textColorPrimary = Color(0xFF212121);
   static const Color textColorSecondary = Color(0xFF757575);
   static const Color textColorHint = Color(0xFF9E9E9E);
+
+  // 文本样式定义
+  static const TextStyle customAppBarTitle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w900,
+    color: textColorPrimary,
+  );
 
   // 文本样式定义
   static const TextStyle customHeadline1 = TextStyle(
@@ -103,7 +110,7 @@ class AppTheme {
       brightness: Brightness.light,
       primarySwatch: Colors.blue,
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: backgroundColor,
+      scaffoldBackgroundColor: Colors.white24,
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         foregroundColor: onPrimaryColor,
@@ -133,18 +140,14 @@ class AppTheme {
           backgroundColor: primaryColor,
           foregroundColor: onPrimaryColor,
           textStyle: customButtonText,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           textStyle: customButtonText.copyWith(color: primaryColor),
           side: const BorderSide(color: primaryColor),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
     );
@@ -168,18 +171,66 @@ class AppTheme {
         ),
       ),
       textTheme: const TextTheme(
-        displayLarge: TextStyle(fontSize: 36, fontWeight: FontWeight.w900, color: Colors.white),
-        displayMedium: TextStyle(fontSize: 32, fontWeight: FontWeight.w800, color: Colors.white),
-        displaySmall: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: Colors.white),
-        headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
-        headlineSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
-        titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
-        titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.grey),
-        titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey),
-        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white),
-        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white),
-        labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
-        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
+        displayLarge: TextStyle(
+          fontSize: 36,
+          fontWeight: FontWeight.w900,
+          color: Colors.white,
+        ),
+        displayMedium: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
+        displaySmall: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        titleLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: Colors.grey,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: Colors.grey,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.normal,
+          color: Colors.grey,
+        ),
       ),
     );
   }

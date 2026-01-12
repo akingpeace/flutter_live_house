@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_live_house/homePages/home.dart';
 import 'package:flutter_live_house/homePages/my.dart';
+import '../widgets/fadeIn_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,22 +21,27 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex, // 设置当前选中
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index; // 更新选中状态
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
-          BottomNavigationBarItem(icon: Icon(Icons.explore), label: '发现'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: '购物车'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
-        ],
+    return FadeInPage(
+      child: Scaffold(
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex, // 设置当前选中
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index; // 更新选中状态
+            });
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
+            BottomNavigationBarItem(icon: Icon(Icons.explore), label: '发现'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag),
+              label: '购物车',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
+          ],
+        ),
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter_live_house/core/themes/app_theme.dart';
 import '../core/services/http_service.dart'; // 导入 HttpService
 import './registy.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -61,14 +60,18 @@ class _LoginPageState extends State<LoginPage> {
 
       // 现在可以直接检查响应数据
       if (responseData is Map && responseData['code'] == 200) {
-        // 登录成功
+        // 登录成功 - 保存 token
+        String? token =
+            responseData['data']['token']; // 假设 token 在 data.token 字段中
+        if (token != null) {
+          await HttpService().saveToken(token);
+        }
+        // 显示成功消息
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('登录成功')));
-
-        // 保存用户信息（例如 token）
         // 跳转到主页
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
       } else {
         // 登录失败
         String errorMessage = responseData['message'] ?? '登录失败';
@@ -81,7 +84,6 @@ class _LoginPageState extends State<LoginPage> {
       if (Navigator.of(context).canPop()) {
         Navigator.of(context).pop();
       }
-
       // 错误处理
       ScaffoldMessenger.of(
         context,
@@ -103,68 +105,61 @@ class _LoginPageState extends State<LoginPage> {
     Color backgroundColor = Theme.of(context).scaffoldBackgroundColor;
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(title: Text('欢迎回来',style: TextStyle(color: AppTheme.textColorPrimary),)),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 40),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(hintText: '请输入用户名', labelText: '用户名'),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              obscureText: true,
-              controller: passwordController,
-              decoration: InputDecoration(hintText: '请输入密码', labelText: '密码'),
-            ),
-            SizedBox(height: 60),
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  OverflowBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(120, 45), // 最小尺寸
-                          // fixedSize: Size(120, 45), // 固定尺寸（可选）
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 12,
-                          ), // 内边距
-                        ),
-                        onPressed: onLogin,
-                        child: Text('登录'),
-                      ),
-                      SizedBox(width: 20),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(120, 45), // 最小尺寸
-                          // fixedSize: Size(120, 45), // 固定尺寸（可选）
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 12,
-                          ), // 内边距
-                        ),
-                        onPressed: goRegisty,
-                        child: Text('注册'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forget');
-                    },
-                    child: Text('忘记密码'),
-                  ),
-                ],
+      appBar: AppBar(
+        backgroundColor: AppTheme.primaryColor,
+        title: Text('欢迎回来', style: AppTheme.customAppBarTitle),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 40),
+              TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  hintText: '请输入用户名',
+                  labelText: '用户名',
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              TextField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  hintText: '请输入密码',
+                  labelText: '密码',
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                ),
+              ),
+              SizedBox(height: 64),
+              SizedBox(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(onPressed: onLogin, child: Text('登录')),
+              ),
+              SizedBox(height: 16),
+              SizedBox(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: goRegisty,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.secondaryColor,
+                  ),
+                  child: Text('注册'),
+                ),
+              ),
+              SizedBox(height: 64),
+              TextButton(
+                onPressed: () {
+                  // Navigator.pushNamed(context, '/forget');
+                },
+                child: Text('忘记密码'),
+              ),
+            ],
+          ),
         ),
       ),
     );
